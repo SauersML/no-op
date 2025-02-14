@@ -10,7 +10,7 @@ mod tests {
     use std::process::Command;
     use std::time::{Duration, Instant};
 
-    const ITERATIONS: usize = 100;
+    const ITERATIONS: usize = 1000;
     const WARMUP_ITERATIONS: usize = 100;
 
     /// Runs the given command (by value) and returns its exit status and elapsed duration.
