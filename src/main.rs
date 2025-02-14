@@ -4,6 +4,7 @@ fn main() {
     // Do nothing.
 }
 
+// cargo test --release -- --nocapture
 #[cfg(test)]
 mod tests {
     use std::env;
