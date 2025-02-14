@@ -2,6 +2,11 @@
 name = "no-op"
 version = "0.1.0"
 edition = "2021"
+description = "A minimal no-op Rust binary optimized for fast startup."
+license = "MIT"
+repository = "https://github.com/SauersML/no-op"
+homepage = "https://github.com/SauersML/no-op"
+documentation = "https://github.com/SauersML/no-op"
 
 [dependencies]
 
