@@ -5,12 +5,15 @@ edition = "2021"
 
 [dependencies]
 
-#[profile.release]
-# Abort on panic to avoid pulling in unwinding support
-# panic = "abort"
-# Optimize for size
-# opt-level = "z"
-# Enable link-time optimization
-# lto = true
+[profile.release]
+# Abort on panic
+panic = "abort"
+
+# Optimize for maximum speed
+opt-level = 3
+
+# Enable Link-Time Optimization
+lto = "fat"
+
 # Use a single codegen unit
-# codegen-units = 1
+codegen-units = 1
