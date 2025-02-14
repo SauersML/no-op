@@ -1,0 +1,16 @@
+[package]
+name = "no-op"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+#[profile.release]
+# Abort on panic to avoid pulling in unwinding support
+# panic = "abort"
+# Optimize for size
+# opt-level = "z"
+# Enable link-time optimization
+# lto = true
+# Use a single codegen unit
+# codegen-units = 1
