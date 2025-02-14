@@ -1,7 +1,5 @@
-// main.rs
+// src/main.rs
 
-// The main function for our binary.
-// This does nothing.
 fn main() {
     // Do nothing.
 }
@@ -23,8 +21,7 @@ mod tests {
     #[test]
     fn compare_noop_true_and_colon() {
         // Get the path to our own binary.
-        // Cargo sets CARGO_BIN_EXE_no-op when running integration tests for a binary named "no-op".
-        // If not found, we fallback to a hard-coded path.
+        // When testing a binary named "no-op", Cargo sets CARGO_BIN_EXE_no-op.
         let own_binary = env::var("CARGO_BIN_EXE_no-op")
             .unwrap_or_else(|_| "target/release/no-op".to_string());
 
@@ -36,13 +33,14 @@ mod tests {
         let (status_true, duration_true) = time_command(Command::new("true"));
         assert!(status_true.success(), "'true' command did not execute successfully");
 
-        // The colon command ":" is a shell built-in that does nothing.
-        // We invoke it via a shell.
-        let (status_colon, duration_colon) = time_command(
-            Command::new("sh")
-                .arg("-c")
-                .arg(":")
-        );
+        // For the colon command, we must build the command step by step because chaining .arg() calls
+        // yields a &mut Command. Create a new Command variable and then pass it by value.
+        let cmd_colon = {
+            let mut c = Command::new("sh");
+            c.arg("-c").arg(":");
+            c
+        };
+        let (status_colon, duration_colon) = time_command(cmd_colon);
         assert!(status_colon.success(), "':' command did not execute successfully");
 
         println!("Execution times:");
